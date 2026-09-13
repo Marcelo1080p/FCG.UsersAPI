@@ -1,3 +1,4 @@
+using Prometheus;
 using System.Text;
 using FCG.UsersAPI.Application.Users.Commands.RegisterUser;
 using FCG.UsersAPI.Application.Interfaces;
@@ -112,8 +113,16 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseRouting();
+
+// Coleta duracao, total e status code de cada requisicao HTTP.
+app.UseHttpMetrics();
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Endpoint consumido pelo Prometheus.
+app.MapMetrics();
 
 app.Run();
