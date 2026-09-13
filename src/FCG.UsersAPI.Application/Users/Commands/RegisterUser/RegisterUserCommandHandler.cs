@@ -1,5 +1,5 @@
 using FCG.UsersAPI.Application.Common;
-using FCG.UsersAPI.Application.Events;
+using FCG.Contracts.Events;
 using FCG.UsersAPI.Domain.Entities;
 using FCG.UsersAPI.Domain.Exceptions;
 using FCG.UsersAPI.Domain.Interfaces;
