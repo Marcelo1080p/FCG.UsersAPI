@@ -49,7 +49,7 @@ public class RegisterUserHandlerTests
         await _handler.Handle(cmd, CancellationToken.None);
 
         await _publishEndpoint.Received(1).Publish(
-            Arg.Any<FCG.UsersAPI.Application.Events.UserCreatedEvent>(),
+            Arg.Any<FCG.Contracts.Events.UserCreatedEvent>(),
             Arg.Any<CancellationToken>());
     }
 }
