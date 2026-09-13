@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 WORKDIR /src
 
 COPY src/FCG.UsersAPI.Domain/FCG.UsersAPI.Domain.csproj src/FCG.UsersAPI.Domain/
