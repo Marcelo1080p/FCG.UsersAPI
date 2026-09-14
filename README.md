@@ -22,6 +22,7 @@ src/
 - **MediatR** (CQRS)
 - **BCrypt** (hash de senhas)
 - **JWT Bearer** (autenticação)
+- **prometheus-net** (métricas)
 
 ## Endpoints
 
@@ -32,6 +33,7 @@ src/
 | GET | `/api/users` | Admin | Lista todos os usuários |
 | PATCH | `/api/users/{id}/promote` | Admin | Promove usuário a administrador |
 | DELETE | `/api/users/{id}` | Admin | Desativa usuário |
+| GET | `/metrics` | Pública | Métricas no formato Prometheus |
 
 ## Eventos
 
@@ -51,6 +53,15 @@ src/
 | `RabbitMQ__Host` | Host do RabbitMQ | `localhost` |
 | `RabbitMQ__Username` | Usuário do RabbitMQ | `guest` |
 | `RabbitMQ__Password` | Senha do RabbitMQ | `guest` |
+
+
+## Observabilidade
+
+O endpoint `/metrics` expõe, no formato Prometheus, a duração, o total e o status code de cada requisição HTTP, com rótulos de controller e action. O dashboard do Grafana está no repositório de orquestração.
+
+## Acesso pelo API Gateway
+
+Em produção, este serviço não é exposto diretamente: as requisições entram pelo **Kong**, na porta 8000. As rotas `/api/auth/*` são públicas (é onde o token é obtido) e `/api/users/*` exigem JWT válido, verificado pelo próprio gateway antes de encaminhar.
 
 ## Como executar
 
